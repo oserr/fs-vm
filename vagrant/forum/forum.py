@@ -5,6 +5,7 @@
 from flask import Flask, request, redirect, url_for
 
 from forumdb import get_posts, add_post
+import bleach
 
 app = Flask(__name__)
 
@@ -54,7 +55,7 @@ def main():
 def post():
   '''New post submission.'''
   message = request.form['content']
-  add_post(message)
+  add_post(bleach.clean(message))
   return redirect(url_for('main'))
 
 

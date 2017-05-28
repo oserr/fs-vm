@@ -3,5 +3,6 @@
 
 # Ignore news data from 
 # https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
-vagrant/news/*
-
+# which contains the script to populate the database. Also ignore text files in folder.
+vagrant/news/newsdata*
+vagrant/news/*.txt

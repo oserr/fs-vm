@@ -18,8 +18,8 @@ This directory contains a script to make three queries on a PostgreSQL database:
 ## Setting up environment
 
 The easiest way to set up your environment is to install a VirtualBox virtual machine
-preconfigured with python and PostgreSQL, to launch the VM with Vagrant, and to run a
-script to populate the database.
+(VM) preconfigured with python and PostgreSQL, to launch the VM with Vagrant, and to
+run a script to populate the database.
 
 * Install VirtualBox from [virtualbox.org][1].
 * Install Vagrant from [vagrantup.com][2].
@@ -37,7 +37,7 @@ script to populate the database.
 ### Launch and connect to the virtual machine
 
 Using a terminal, change working directory to the `vagrant` directory containing the
-VM configuration file, i.e., directory containing Vagrantfile, launch the VM and then
+VM configuration file, i.e., directory containing `Vagrantfile`, launch the VM and then
 connect to it:
 
 ```bash
@@ -112,11 +112,13 @@ limit number in both *most popular* queries, or the percent error rate in the
 definitions because the benefit of having a separate function for each query did not
 justify the costs, at least not for me. For example, defining functions for each
 query meant dealing with these tradeoffs
+
 * Opening a DB connection in each query, making the whole thing less efficient.
 * To avoid opening the DB connection in each query, either
   * define a global variable with the connection before calling the functions, or
   * Make the connection a parameter of each function, resulting in more complex
     function signatures with more complex error checking logic.
+
 Besides resulting in more boilerplate code, it also seems highly unlikely that I or
 anyone else would use these functions. Therefore, I decided to keep things simple and
 make `news.py` a pure script.

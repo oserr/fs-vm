@@ -1,2 +1,3 @@
 # Ignore DB files
 *.db
+*.db-journal

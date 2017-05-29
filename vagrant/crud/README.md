@@ -72,6 +72,57 @@ python puppypopulator.py
 ```bash
 python query_puppies_db.py
 ```
+
+## Example: Simple restaurant names web page with BaseHTTPServer
+
+### Defining the ORM entities and creating the DB
+
+The `Restaurant` entity.
+
+```python
+class Restaurant(Base):
+    __tablename__ = 'restaurant'
+    name = Column(String(80), nullable=False)
+    id = Column(Integer, primary_key=True)
+```
+
+The `MenuItem` entity.
+
+```python
+class MenuItem(Base):
+    __tablename__ = 'menu_item'
+    name = Column(String(80), nullable=False)
+    id = Column(Integer, primary_key=True)
+    course = Column(String(250))
+    description = Column(String(250))
+    price = Column(String(8))
+    restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
+    restaurant = relationship(Restaurant)
+```
+
+To create the database, run `database_setup.py`
+
+```bash
+python database_setup.py
+```
+
+### Populating the DB with data
+
+```bash
+python lotsofmenus.py
+```
+
+### Simple HTTP server with BaseHTTPServer
+
+See `webserver.py` for all the details, but the gist is
+
+* Define class that inherits from `BaseHTTPServer.BaseHTTPRequestHandler`.
+* Define `do_GET(self)` to handle GET requests.
+* Define `do_POST(self)` to handle POST requests.
+* Create your HTTP server: `HTTPServer(('', port), YourHandler)`.
+* Launch your server with `server_forever()`.
+
+
 [1]: https://en.wikipedia.org/wiki/Object-relational_mapping
 [2]: https://www.python.org/downloads/
 [3]: https://www.sqlalchemy.org/

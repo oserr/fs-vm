@@ -120,7 +120,7 @@ See `webserver.py` for all the details, but the gist is
 * Define `do_GET(self)` to handle GET requests.
 * Define `do_POST(self)` to handle POST requests.
 * Create your HTTP server: `HTTPServer(('', port), YourHandler)`.
-* Launch your server with `server_forever()`.
+* Launch your server with `serve_forever()`.
 
 
 [1]: https://en.wikipedia.org/wiki/Object-relational_mapping
